@@ -10,6 +10,12 @@ function subtraction(currentValue, newValue) {
   return subractedValue;
 }
 
+// function numberCheck(newValue) {
+//   const typeCheck = (typeof newValue)
+//   if (typeCheck !== number) {
+//     window.alert('Please enter a number')
+//   }
+// }
 // tiles.forEach(
 //   // Tracks all the tiles and their index (0-8)
 //   (tileDivElement, i) =>
