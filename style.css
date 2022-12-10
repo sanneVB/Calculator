@@ -1,13 +1,78 @@
-button {
-  border: 3px rgb(44, 24, 24) solid;
-  width: 10vw;
-  height: 10vw;
-  border-radius: 10%;
+.button-div {
+  /* border: 3px rgb(44, 24, 24) solid; */
+  width: 10rem;
+  height: 10rem;
+  /* border-radius: 10%; */
 }
 
-.container {
-  display: grid;
-  gap: 4px;
-  grid-template-columns: repeat(3, 1fr);
-  width: 20em;
+.button {
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  height: auto;
+  width: auto;
+}
+
+#root {
+  width: 40rem;
+  height: 40rem;
+}
+
+#container {
+  display: flex;
+  flex-flow: row wrap; 
+  justify-content: center;
+  align-items: start;
+}
+
+.number {
+  align-items: center;
+  justify-content: center;
+}
+
+#button0 {
+  flex-grow: 2;
+}
+
+/* #number7 {
+  order: 0;
+}
+
+#number8 {
+  order: 1;
+}
+
+#number9 {
+  order: 2;
+}
+
+#number4 {
+  order: 3;
+}
+
+#number5 {
+  order: 4;
+}
+
+#number6 {
+  order: 5;
+}
+
+#number1 {
+  order: 6;
+}
+
+#number2 {
+  order: 7;
+}
+
+#number3 {
+  order: 8;
+}
+
+#number0 {
+  order: 9;
+  flex: 2; */
 }
