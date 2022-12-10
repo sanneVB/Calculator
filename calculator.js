@@ -1,7 +1,4 @@
-// Testing dynamically created content
-// const rootId = document.getElementById('root');
 const containerId = document.getElementById('container');
-// console.log(document.getElementsByClassName('container'));
 
 function buttonCreation(symbol) {
   const buttonDiv = document.createElement('div');
@@ -26,36 +23,14 @@ function numberButtonCreation(start, end) {
 }
 
 numberButtonCreation(7, 9);
-buttonCreation('CE')
+buttonCreation('CE');
 numberButtonCreation(4, 6);
-buttonCreation('-')
+buttonCreation('-');
 numberButtonCreation(1, 3);
-buttonCreation('+')
+buttonCreation('+');
 buttonCreation(0);
 buttonCreation('.');
 buttonCreation('=');
-
-// function buttonOrder(start, end, row) {
-//   for (let i = start, i <= end; i += 1){
-//     const buttonId = document.getElementById(`${i}`)
-//     buttonId.classList.add
-//   }
-// }
-// const calcButton = document.createElement('button');
-
-// calcButton.textContent = '7';
-// containerId.appendChild(calcButton);
-// calcButton.textContent = '8';
-// getElementsByClassName.appendChild(calcButton);
-// calcButton.textContent = '9';
-// getElementsByClassName.appendChild(calcButton);
-
-// calcContainer.classList.add('container');
-// rootId.appendChild(calcContainer)
-
-// const numberButton =
-
-// const calculator = document.createElement;
 
 function addition(currentValue, newValue) {
   let addedValue = currentValue + newValue;

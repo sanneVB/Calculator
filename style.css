@@ -1,8 +1,6 @@
 .button-div {
-  /* border: 3px rgb(44, 24, 24) solid; */
   width: 10rem;
   height: 10rem;
-  /* border-radius: 10%; */
 }
 
 .button {
@@ -34,45 +32,4 @@ button {
 
 #button0 {
   flex-grow: 2;
-}
-
-/* #number7 {
-  order: 0;
-}
-
-#number8 {
-  order: 1;
-}
-
-#number9 {
-  order: 2;
-}
-
-#number4 {
-  order: 3;
-}
-
-#number5 {
-  order: 4;
-}
-
-#number6 {
-  order: 5;
-}
-
-#number1 {
-  order: 6;
-}
-
-#number2 {
-  order: 7;
-}
-
-#number3 {
-  order: 8;
-}
-
-#number0 {
-  order: 9;
-  flex: 2; */
 }
