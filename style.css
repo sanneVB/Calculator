@@ -6,6 +6,7 @@
 .button {
   height: 100%;
   width: 100%;
+  font-size: 4rem;
 }
 
 button {
@@ -13,23 +14,49 @@ button {
   width: auto;
 }
 
-#root {
+#calculator {
   width: 40rem;
-  height: 40rem;
+  height: 50rem;
+  display: flex;
+  flex-flow: column wrap; 
+  justify-content: center;
+  align-items: start;
 }
 
-#container {
+#numberButtonContainer {
+  width: 30rem;
+  height: 40rem;
   display: flex;
   flex-flow: row wrap; 
   justify-content: center;
   align-items: start;
 }
 
-.number {
-  align-items: center;
+#symbolButtonContainer {
+  width: 10rem;
+  height: 50rem;
+  display: flex;
+  flex-flow: column; 
   justify-content: center;
+  align-items: end;
+}
+
+#calculationFieldContainer {
+  width: 30rem;
+  height: 10rem;
+  }
+
+#calculationFieldText {
+  padding: 2px 20px;
+  font-size: 9rem;
+  text-align: right;
+  margin: 0;
 }
 
 #button0 {
   flex-grow: 2;
+}
+
+#button\= {
+  flex-grow: 2;  
 }
