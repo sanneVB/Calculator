@@ -8,11 +8,11 @@
   width: 10rem;
   font-size: 4rem;
 }
-
+/* 
 button {
   height: auto;
   width: auto;
-}
+} */
 
 #calculator {
   width: 40rem;
@@ -44,14 +44,44 @@ button {
 #calculationFieldContainer {
   width: 30rem;
   height: 10rem;
+  display: flex;
+  flex-flow: column; 
   }
 
-#calculationFieldText {
+#currentCalcTextDiv {
+  display: flex;
+  width: 30rem;
+  height: 7rem;
+}
+
+#historyCalcTextDiv {
+  display: flex;
+  width: 30rem;
+  height: 3rem;
+}
+
+ #currentCalcParagraph {
+  display: flex;
+  width: 30rem;
   padding: 2px 20px;
-  font-size: 9rem;
+  font-size: 3rem;
   text-align: right;
   margin: 0;
+  /* display: flex;
+  padding: 2px 20px;
+  font-size: 3rem;
+  text-align: right;
+  margin: 0; */
 }
+
+/* #calculationFieldText {
+  display: flex;
+  width: 30rem;
+  padding: 2px 20px;
+  font-size: 3rem;
+  text-align: right;
+  margin: 0;
+} */
 
 #button0 {
   flex-grow: 2;

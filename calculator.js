@@ -6,23 +6,86 @@ const numberButtonSymbols = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, '.'];
 // Should be list from top to bottom
 const functionButtonSymbols = ['CE', '-', '+', '='];
 
-const calculationsHistory = [];
+// Make the text in the calculationField targetable for innerHTML
+
+const pastCalculations = [];
+const currentNumber = [];
+
+let currentCalculation = '';
+
 let currentValue = '0';
+let formerValue = '0';
+
+function clearEverything() {
+  const currentParagraphID = document.getElementById('currentCalcParagraph');
+  pastCalculations.push(currentCalculation);
+  currentValue = '0';
+  formerValue = '0';
+  currentCalculation = '';
+  currentParagraphID.innerHTML = currentValue;
+}
+
+function minus() {
+  const historyFieldTextID = document.getElementById('historyFieldText');
+  formerValue = Number(currentValue);
+  currentValue = '0';
+  currentCalculation += `${formerValue} -`;
+  historyFieldTextID.innerHTML = currentCalculation;
+}
+
+function plus() {
+  const historyFieldTextID = document.getElementById('historyFieldText');
+  formerValue = Number(currentValue);
+  currentValue = '0';
+  currentCalculation += `${formerValue} +`;
+  historyFieldTextID.innerHTML = currentCalculation;
+}
+
+function equals() {
+  const currentParagraphID = document.getElementById('currentCalcParagraph');
+  const historyFieldTextID = document.getElementById('historyFieldText');
+  currentCalculation += `${currentValue}`;
+  console.log(currentCalculation);
+  currentValue = eval(currentCalculation)
+  console.log(currentValue)
+  historyFieldTextID.innerHTML = currentCalculation;
+  currentParagraphID.innerHTML = `${currentValue}`;
+  
+}
 
 const buttonPressed = function presser(e) {
-  const paragraphID = document.getElementById('calculationFieldText');
+  const currentParagraphID = document.getElementById('currentCalcParagraph');
   if (e.target.parentNode.id === 'numberButtonContainer') {
     if (currentValue === '0') {
       currentValue = e.target.innerHTML;
-      paragraphID.innerHTML = currentValue;
+      currentParagraphID.innerHTML = currentValue;
     } else {
       currentValue += `${e.target.innerHTML}`;
-      paragraphID.innerHTML = currentValue;
+      currentParagraphID.innerHTML = currentValue;
     }
-    calculationsHistory.push(`${e.target.innerHTML}`);
+    currentNumber.push(`${e.target.innerHTML}`);
+    // console.log(currentNumber);
+  } else {
+    const functionPressed = e.target.id;
+    switch (functionPressed) {
+      case 'buttonCE':
+        clearEverything();
+        break;
+      case 'button-':
+        minus();
+        break;
+      case 'button+':
+        plus();
+        break;
+      case 'button=':
+        equals();
+        break;
+      default:
+    }
+    // currentCalculation.push(`${e.target.innerHTML}`);
+    currentParagraphID.innerHTML = currentValue;
+    // console.log(currentCalculation);
   }
-  calculationsHistory.push(`${e.target.innerHTML}`);
-  paragraphID.innerHTML = currentValue;
 };
 
 // Function that will take symbol input and then create a button with that symbol
@@ -53,24 +116,33 @@ numberButtonCreation(functionButtonSymbols, 'functionButtonContainer');
 numberButtonCreation(numberButtonSymbols, 'numberButtonContainer');
 
 // create calculation field
+
+// Target the main calculationFieldContainer
 const calcDivId = document.getElementById('calculationFieldContainer');
 
-const calculationField = document.createElement('p');
-calculationField.id = 'calculationFieldText';
-calculationField.textContent = `${currentValue}`;
+// Create a div for the history paragraph to live in
+const historyCalcTextDiv = document.createElement('div');
+historyCalcTextDiv.id = 'historyCalcTextDiv';
+historyCalcTextDiv.classList.add('calculationDiv');
+calcDivId.appendChild(historyCalcTextDiv);
 
-calcDivId.appendChild(calculationField);
+const historyCalcTextDivId = document.getElementById('historyCalcTextDiv');
 
-// function displayValue()
+const historyFieldText = document.createElement('p');
+historyFieldText.id = 'historyFieldText';
+historyFieldText.textContent = `${currentCalculation}`;
 
-// function addition(currentValue, newValue) {
-//   let addedValue = currentValue + newValue;
-//   addedValue = addedValue.toFixed(2);
-//   return addedValue;
-// }
+historyCalcTextDivId.appendChild(historyFieldText);
 
-// function subtraction(currentValue, newValue) {
-//   let subractedValue = currentValue - newValue;
-//   subractedValue = subractedValue.toFixed(2);
-//   return subractedValue;
-// }
+const currentCalcTextDiv = document.createElement('div');
+currentCalcTextDiv.id = 'currentCalcTextDiv';
+currentCalcTextDiv.classList.add('calculationDiv');
+calcDivId.appendChild(currentCalcTextDiv);
+
+const currentCalcDivId = document.getElementById('currentCalcTextDiv');
+
+const currentCalcText = document.createElement('p');
+currentCalcText.id = 'currentCalcParagraph';
+currentCalcText.textContent = `${currentValue}`;
+
+currentCalcDivId.appendChild(currentCalcText);
