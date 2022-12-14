@@ -8,63 +8,71 @@ const functionButtonSymbols = ['CE', '-', '+', '='];
 
 // Make the text in the calculationField targetable for innerHTML
 
-const pastCalculations = [];
-const currentNumber = [];
-
-let currentCalculation = '';
-
+let newNumberCreation = true;
+// let operatorPressed = false;
 let currentValue = '0';
-let formerValue = '0';
+let formerValue = '';
 
 function clearEverything() {
   const currentParagraphID = document.getElementById('currentCalcParagraph');
-  pastCalculations.push(currentCalculation);
+  const historyFieldTextID = document.getElementById('historyFieldText');
   currentValue = '0';
-  formerValue = '0';
-  currentCalculation = '';
+  formerValue = '';
+  newNumberCreation = true;
   currentParagraphID.innerHTML = currentValue;
+  historyFieldTextID.innerHTML = formerValue;
 }
 
 function minus() {
+  const currentParagraphID = document.getElementById('currentCalcParagraph');
   const historyFieldTextID = document.getElementById('historyFieldText');
-  formerValue = Number(currentValue);
-  currentValue = '0';
-  currentCalculation += `${formerValue} -`;
-  historyFieldTextID.innerHTML = currentCalculation;
+  if (!newNumberCreation) {
+    formerValue += `${currentValue} - `;
+    currentValue = '';
+    historyFieldTextID.innerHTML = formerValue;
+    currentParagraphID.innerHTML = currentValue;
+    newNumberCreation = true;
+  }
 }
 
 function plus() {
+  const currentParagraphID = document.getElementById('currentCalcParagraph');
   const historyFieldTextID = document.getElementById('historyFieldText');
-  formerValue = Number(currentValue);
-  currentValue = '0';
-  currentCalculation += `${formerValue} +`;
-  historyFieldTextID.innerHTML = currentCalculation;
+  if (!newNumberCreation) {
+    formerValue += `${currentValue} + `;
+    currentValue = '';
+    historyFieldTextID.innerHTML = formerValue;
+    currentParagraphID.innerHTML = currentValue;
+    newNumberCreation = true;
+  }
 }
 
 function equals() {
   const currentParagraphID = document.getElementById('currentCalcParagraph');
   const historyFieldTextID = document.getElementById('historyFieldText');
-  currentCalculation += `${currentValue}`;
-  console.log(currentCalculation);
-  currentValue = eval(currentCalculation)
-  console.log(currentValue)
-  historyFieldTextID.innerHTML = currentCalculation;
-  currentParagraphID.innerHTML = `${currentValue}`;
-  
+  historyFieldTextID.innerHTML += `${currentValue} = `;
+  // eslint-disable-next-line no-eval
+  currentValue = eval(formerValue + currentValue);
+  formerValue = currentValue;
+  currentParagraphID.innerHTML = currentValue;
+  currentValue = '';
+}
+
+function numberButtonResponse(e) {
+  const currentParagraphID = document.getElementById('currentCalcParagraph');
+  if (newNumberCreation) {
+    currentValue = e.target.innerHTML;
+    currentParagraphID.innerHTML = currentValue;
+    newNumberCreation = false;
+  } else {
+    currentValue += e.target.innerHTML;
+    currentParagraphID.innerHTML = currentValue;
+  }
 }
 
 const buttonPressed = function presser(e) {
-  const currentParagraphID = document.getElementById('currentCalcParagraph');
   if (e.target.parentNode.id === 'numberButtonContainer') {
-    if (currentValue === '0') {
-      currentValue = e.target.innerHTML;
-      currentParagraphID.innerHTML = currentValue;
-    } else {
-      currentValue += `${e.target.innerHTML}`;
-      currentParagraphID.innerHTML = currentValue;
-    }
-    currentNumber.push(`${e.target.innerHTML}`);
-    // console.log(currentNumber);
+    numberButtonResponse(e);
   } else {
     const functionPressed = e.target.id;
     switch (functionPressed) {
@@ -82,9 +90,6 @@ const buttonPressed = function presser(e) {
         break;
       default:
     }
-    // currentCalculation.push(`${e.target.innerHTML}`);
-    currentParagraphID.innerHTML = currentValue;
-    // console.log(currentCalculation);
   }
 };
 
@@ -130,7 +135,7 @@ const historyCalcTextDivId = document.getElementById('historyCalcTextDiv');
 
 const historyFieldText = document.createElement('p');
 historyFieldText.id = 'historyFieldText';
-historyFieldText.textContent = `${currentCalculation}`;
+historyFieldText.textContent = `${formerValue}`;
 
 historyCalcTextDivId.appendChild(historyFieldText);
 

@@ -1,3 +1,12 @@
+body {
+  background-color: #181A1B;
+  
+}
+
+p {
+  color: #E8E6E3;
+}
+
 .button-div {
   width: 10rem;
   height: 10rem;
@@ -7,6 +16,9 @@
   height: 10rem;
   width: 10rem;
   font-size: 4rem;
+  color: #E8E6E3;
+  border-color: #736B5E;
+  background-color: #181A1B;
 }
 /* 
 button {
