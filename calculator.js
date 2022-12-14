@@ -48,14 +48,16 @@ function plus() {
 }
 
 function equals() {
-  const currentParagraphID = document.getElementById('currentCalcParagraph');
-  const historyFieldTextID = document.getElementById('historyFieldText');
-  historyFieldTextID.innerHTML += `${currentValue} = `;
-  // eslint-disable-next-line no-eval
-  currentValue = eval(formerValue + currentValue);
-  formerValue = currentValue;
-  currentParagraphID.innerHTML = currentValue;
-  currentValue = '';
+  if (!newNumberCreation && currentValue.length !== 0) {
+    const currentParagraphID = document.getElementById('currentCalcParagraph');
+    const historyFieldTextID = document.getElementById('historyFieldText');
+    historyFieldTextID.innerHTML += `${currentValue} = `;
+    // eslint-disable-next-line no-eval
+    currentValue = eval(formerValue + currentValue);
+    formerValue = currentValue;
+    currentParagraphID.innerHTML = currentValue;
+    currentValue = '';
+  }
 }
 
 function numberButtonResponse(e) {
